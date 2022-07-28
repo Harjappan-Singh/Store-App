@@ -13,8 +13,8 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center pt-3 pb-3">Welcome to my store: </h1>
-        <form action="">
+        <h1 class=" text-center pt-3 pb-3">Welcome to my store: </h1>
+        <form onsubmit="return addItem(this);">
             <div class="row">
                 <div class="col">
                     <label for="item_name">Item Name: </label>
@@ -31,6 +31,7 @@
                 </div>
             </div>
         </form>
+        <h3 id="total_price" class=" text-center pt-3 pb-3"></h3>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
