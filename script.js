@@ -10,6 +10,25 @@ class Item {
     }
 }
 
+const totalPriceStorage = localStorage.getItem("totalPrice");
+if (totalPriceStorage !== null) {
+    totalPrice = parseInt(totalPriceStorage);
+}
+
+const cartStorage = localStorage.getItem("cart");
+if (cartStorage !== null) {
+    cart = JSON.parse(cartStorage).map((item) => {
+        return new Item(item.name, item.price);
+    })
+}
+
+refreshUI();
+
+function updateStorage() {
+    localStorage.setItem("totalPrice", totalPrice)
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
 function refreshUI() {
     totalPriceElement.innerText = `Total price of items in your cart: ${totalPrice} INR`;
     parentListElement.innerHTML = ""
@@ -30,6 +49,7 @@ function refreshUI() {
         removeButton.addEventListener("click", () => {
             cart.splice(index, 1)
             totalPrice -= item.price;
+            updateStorage();
             refreshUI();
         });
     });
@@ -44,6 +64,7 @@ function addItem(form) {
     const item = new Item(itemName, parseInt(itemPrice));
     cart.push(item);
 
+    updateStorage();
     refreshUI();
 
     return false
