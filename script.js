@@ -30,12 +30,12 @@ function updateStorage() {
 }
 
 function refreshUI() {
-    totalPriceElement.innerText = `Total price of items in your cart: ${totalPrice} INR`;
+    totalPriceElement.innerText = `Total price of items in your cart: $${totalPrice}`;
     parentListElement.innerHTML = ""
 
     cart.forEach((item, index) => {
         const listElement = document.createElement("li");
-        const listTextNode = document.createTextNode(`${item.name} - ${item.price} INR`);
+        const listTextNode = document.createTextNode(`${item.name} - $${item.price}`);
         listElement.classList.add("list-group-item", "d-flex", "justify-content-between");
         listElement.appendChild(listTextNode);
         parentListElement.appendChild(listElement);
